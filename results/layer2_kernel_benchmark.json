@@ -1,0 +1,191 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "model": "yolov8s",
+  "kernel": "fake_quant_perchannel",
+  "description": "Per-channel INT8 fake-quantize: CUDA kernel vs PyTorch baseline",
+  "peak_bw_gbs": 1008.0,
+  "n_warmup": 50,
+  "n_reps": 1000,
+  "per_shape_results": [
+    {
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "label": "backbone_3x3_256",
+      "method": "PyTorch",
+      "mean_us": 26.626,
+      "p99_us": 27.648,
+      "throughput_gbs": 265.83,
+      "pct_peak_bw": 26.37,
+      "speedup_vs_pytorch": null
+    },
+    {
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "label": "backbone_3x3_256",
+      "method": "CUDA kernel",
+      "mean_us": 4.357,
+      "p99_us": 5.12,
+      "throughput_gbs": 1624.66,
+      "pct_peak_bw": 161.18,
+      "speedup_vs_pytorch": 6.111
+    },
+    {
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "label": "neck_3x3_128",
+      "method": "PyTorch",
+      "mean_us": 19.311,
+      "p99_us": 19.68,
+      "throughput_gbs": 91.63,
+      "pct_peak_bw": 9.09,
+      "speedup_vs_pytorch": null
+    },
+    {
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "label": "neck_3x3_128",
+      "method": "CUDA kernel",
+      "mean_us": 3.455,
+      "p99_us": 4.096,
+      "throughput_gbs": 512.16,
+      "pct_peak_bw": 50.81,
+      "speedup_vs_pytorch": 5.589
+    },
+    {
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "label": "small_3x3_64",
+      "method": "PyTorch",
+      "mean_us": 17.463,
+      "p99_us": 18.432,
+      "throughput_gbs": 25.33,
+      "pct_peak_bw": 2.51,
+      "speedup_vs_pytorch": null
+    },
+    {
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "label": "small_3x3_64",
+      "method": "CUDA kernel",
+      "mean_us": 3.339,
+      "p99_us": 4.096,
+      "throughput_gbs": 132.5,
+      "pct_peak_bw": 13.15,
+      "speedup_vs_pytorch": 5.23
+    },
+    {
+      "shape": [
+        256,
+        256,
+        1,
+        1
+      ],
+      "label": "backbone_1x1_256",
+      "method": "PyTorch",
+      "mean_us": 16.745,
+      "p99_us": 17.408,
+      "throughput_gbs": 46.96,
+      "pct_peak_bw": 4.66,
+      "speedup_vs_pytorch": null
+    },
+    {
+      "shape": [
+        256,
+        256,
+        1,
+        1
+      ],
+      "label": "backbone_1x1_256",
+      "method": "CUDA kernel",
+      "mean_us": 3.2,
+      "p99_us": 4.096,
+      "throughput_gbs": 245.79,
+      "pct_peak_bw": 24.38,
+      "speedup_vs_pytorch": 5.233
+    },
+    {
+      "shape": [
+        128,
+        64,
+        1,
+        1
+      ],
+      "label": "neck_1x1_128x64",
+      "method": "PyTorch",
+      "mean_us": 16.175,
+      "p99_us": 16.384,
+      "throughput_gbs": 6.08,
+      "pct_peak_bw": 0.6,
+      "speedup_vs_pytorch": null
+    },
+    {
+      "shape": [
+        128,
+        64,
+        1,
+        1
+      ],
+      "label": "neck_1x1_128x64",
+      "method": "CUDA kernel",
+      "mean_us": 3.055,
+      "p99_us": 3.296,
+      "throughput_gbs": 32.18,
+      "pct_peak_bw": 3.19,
+      "speedup_vs_pytorch": 5.295
+    },
+    {
+      "shape": [
+        1,
+        16,
+        1,
+        1
+      ],
+      "label": "dfl_conv",
+      "method": "PyTorch",
+      "mean_us": 14.964,
+      "p99_us": 15.36,
+      "throughput_gbs": 0.01,
+      "pct_peak_bw": 0.0,
+      "speedup_vs_pytorch": null
+    },
+    {
+      "shape": [
+        1,
+        16,
+        1,
+        1
+      ],
+      "label": "dfl_conv",
+      "method": "CUDA kernel",
+      "mean_us": 3.063,
+      "p99_us": 3.232,
+      "throughput_gbs": 0.06,
+      "pct_peak_bw": 0.01,
+      "speedup_vs_pytorch": 4.885
+    }
+  ]
+}

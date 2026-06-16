@@ -1,0 +1,20 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "model": "yolov8s",
+  "method": "per_channel_int8_fake_quant",
+  "quantized_layers": 63,
+  "skipped_layers": [
+    "model.22.dfl.conv"
+  ],
+  "dataset": "coco_val2017",
+  "n_images": 5000,
+  "fp32_baseline_mAP50_95": 0.4442,
+  "pertensor_all_mAP50_95": 0.4399,
+  "pertensor_smart_mAP50_95": 0.4425,
+  "metrics": {
+    "mAP50_95": 0.4433715284925421,
+    "mAP50": 0.6106288637972903,
+    "precision": 0.6743610359665728,
+    "recall": 0.5671147409479846
+  }
+}
