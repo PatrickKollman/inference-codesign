@@ -1,0 +1,33 @@
+# Model weights — download on first run, never commit
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+
+# Data — COCO val is large; document the download step instead
+data/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# RunPod / remote artifacts that aren't results
+*.log
+runs/
+
+# results/ is committed — do NOT exclude it
+# Large profiler binaries (.nsys-rep, .ncu-rep) may require Git LFS; see results/CONVENTION.md

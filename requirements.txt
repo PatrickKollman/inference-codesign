@@ -1,0 +1,6 @@
+# Core — torch is pre-installed on RunPod template; ultralytics pulls numpy + opencv
+ultralytics
+
+# Testing — local unit test runs only
+pytest
+numpy
