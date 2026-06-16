@@ -36,5 +36,29 @@ if [ ! -f "${ANNOT}" ]; then
     exit 1
 fi
 
+echo "=== Converting COCO JSON annotations to YOLO label format ==="
+# convert_coco creates a new directory at save_dir (incrementing if it exists).
+# Use a dedicated temp dir and move labels into place to avoid path conflicts.
+TMP_CONVERT="${DATA_DIR}_convert_tmp"
+rm -rf "${TMP_CONVERT}"
+python -c "
+from ultralytics.data.converter import convert_coco
+convert_coco(
+    labels_dir='${DATA_DIR}/annotations/',
+    save_dir='${TMP_CONVERT}',
+    use_segments=False,
+    cls91to80=True,
+)
+"
+mv "${TMP_CONVERT}/labels" "${DATA_DIR}/labels"
+rm -rf "${TMP_CONVERT}"
+
+N_LABELS=\$(ls "${DATA_DIR}/labels/val2017/" | wc -l | tr -d ' ')
+echo "=== \${N_LABELS} label files created (expected 5000) ==="
+if [ "\${N_LABELS}" -ne 5000 ]; then
+    echo "ERROR: Label count mismatch — conversion may have failed."
+    exit 1
+fi
+
 echo "=== COCO val2017 ready at ${DATA_DIR} ==="
 echo "Run: python scripts/day3_eval_fp32.py --data-dir ${DATA_DIR}"

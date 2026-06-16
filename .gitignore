@@ -30,4 +30,9 @@ data/
 runs/
 
 # results/ is committed — do NOT exclude it
-# Large profiler binaries (.nsys-rep, .ncu-rep) may require Git LFS; see results/CONVENTION.md
+# Exception: binary profiler artifacts capture process environment (API keys, tokens).
+# Commit text exports only (.txt stats); regenerate binaries locally when needed.
+results/*.nsys-rep
+results/*.sqlite
+results/*.ncu-rep
+results/*.qdstrm

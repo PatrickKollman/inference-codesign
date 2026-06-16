@@ -1,0 +1,25 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "model": "yolov8s",
+  "weights": "yolov8s.pt",
+  "input_shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "input_dtype": "float32",
+  "n_parameters": 11166560,
+  "output_shapes": [
+    [
+      1,
+      84,
+      8400
+    ],
+    [
+      "dict"
+    ]
+  ],
+  "device": "cuda",
+  "inference_wrapper": "none (plain nn.Module forward())"
+}

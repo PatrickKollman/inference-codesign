@@ -41,6 +41,7 @@ def _make_coco_yaml(data_dir: Path) -> str:
     names_lines = "\n".join(f"  {i}: {n}" for i, n in enumerate(COCO_CLASSES))
     return (
         f"path: {data_dir.resolve()}\n"
+        f"train: images/val2017\n"  # required by ultralytics validator; unused during val
         f"val: images/val2017\n"
         f"nc: 80\n"
         f"names:\n{names_lines}\n"

@@ -1,0 +1,6 @@
+==PROF== Connected to process 2289 (/usr/bin/python3.12)
+Warming up (50 iters, outside capture range)...
+==ERROR== ERR_NVGPUCTRPERM - The user does not have permission to access NVIDIA GPU Performance Counters on the target device 0. For instructions on enabling permissions and to get more information see https://developer.nvidia.com/ERR_NVGPUCTRPERM
+Starting nsys capture (20 iters)...
+Capture complete.
+==PROF== Disconnected from process 2289
