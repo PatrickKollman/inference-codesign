@@ -1,0 +1,393 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "n_images_subset": 100,
+  "baseline_mAP50_95": 0.5278,
+  "quantization": "per-tensor symmetric INT8 (weight-only fake quant)",
+  "note": "mAP values from fast subset \u2014 use for relative ranking only",
+  "results": [
+    {
+      "layer": "model.0.conv",
+      "n_params": 864,
+      "mAP50_95": 0.5289,
+      "mAP_drop": -0.0011
+    },
+    {
+      "layer": "model.1.conv",
+      "n_params": 18432,
+      "mAP50_95": 0.5252,
+      "mAP_drop": 0.0026
+    },
+    {
+      "layer": "model.2.cv1.conv",
+      "n_params": 4096,
+      "mAP50_95": 0.5248,
+      "mAP_drop": 0.0031
+    },
+    {
+      "layer": "model.2.cv2.conv",
+      "n_params": 6144,
+      "mAP50_95": 0.5249,
+      "mAP_drop": 0.0029
+    },
+    {
+      "layer": "model.2.m.0.cv1.conv",
+      "n_params": 9216,
+      "mAP50_95": 0.5254,
+      "mAP_drop": 0.0024
+    },
+    {
+      "layer": "model.2.m.0.cv2.conv",
+      "n_params": 9216,
+      "mAP50_95": 0.5279,
+      "mAP_drop": -0.0001
+    },
+    {
+      "layer": "model.3.conv",
+      "n_params": 73728,
+      "mAP50_95": 0.5262,
+      "mAP_drop": 0.0016
+    },
+    {
+      "layer": "model.4.cv1.conv",
+      "n_params": 16384,
+      "mAP50_95": 0.5268,
+      "mAP_drop": 0.0011
+    },
+    {
+      "layer": "model.4.cv2.conv",
+      "n_params": 32768,
+      "mAP50_95": 0.5251,
+      "mAP_drop": 0.0027
+    },
+    {
+      "layer": "model.4.m.0.cv1.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.528,
+      "mAP_drop": -0.0002
+    },
+    {
+      "layer": "model.4.m.0.cv2.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5266,
+      "mAP_drop": 0.0013
+    },
+    {
+      "layer": "model.4.m.1.cv1.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5271,
+      "mAP_drop": 0.0007
+    },
+    {
+      "layer": "model.4.m.1.cv2.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5276,
+      "mAP_drop": 0.0002
+    },
+    {
+      "layer": "model.5.conv",
+      "n_params": 294912,
+      "mAP50_95": 0.5278,
+      "mAP_drop": -0.0
+    },
+    {
+      "layer": "model.6.cv1.conv",
+      "n_params": 65536,
+      "mAP50_95": 0.5263,
+      "mAP_drop": 0.0015
+    },
+    {
+      "layer": "model.6.cv2.conv",
+      "n_params": 131072,
+      "mAP50_95": 0.5272,
+      "mAP_drop": 0.0006
+    },
+    {
+      "layer": "model.6.m.0.cv1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5275,
+      "mAP_drop": 0.0003
+    },
+    {
+      "layer": "model.6.m.0.cv2.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5267,
+      "mAP_drop": 0.0011
+    },
+    {
+      "layer": "model.6.m.1.cv1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5263,
+      "mAP_drop": 0.0015
+    },
+    {
+      "layer": "model.6.m.1.cv2.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5274,
+      "mAP_drop": 0.0005
+    },
+    {
+      "layer": "model.7.conv",
+      "n_params": 1179648,
+      "mAP50_95": 0.5272,
+      "mAP_drop": 0.0006
+    },
+    {
+      "layer": "model.8.cv1.conv",
+      "n_params": 262144,
+      "mAP50_95": 0.5262,
+      "mAP_drop": 0.0016
+    },
+    {
+      "layer": "model.8.cv2.conv",
+      "n_params": 393216,
+      "mAP50_95": 0.5272,
+      "mAP_drop": 0.0006
+    },
+    {
+      "layer": "model.8.m.0.cv1.conv",
+      "n_params": 589824,
+      "mAP50_95": 0.5281,
+      "mAP_drop": -0.0003
+    },
+    {
+      "layer": "model.8.m.0.cv2.conv",
+      "n_params": 589824,
+      "mAP50_95": 0.5279,
+      "mAP_drop": -0.0001
+    },
+    {
+      "layer": "model.9.cv1.conv",
+      "n_params": 131072,
+      "mAP50_95": 0.5282,
+      "mAP_drop": -0.0004
+    },
+    {
+      "layer": "model.9.cv2.conv",
+      "n_params": 524288,
+      "mAP50_95": 0.5254,
+      "mAP_drop": 0.0025
+    },
+    {
+      "layer": "model.12.cv1.conv",
+      "n_params": 196608,
+      "mAP50_95": 0.5259,
+      "mAP_drop": 0.0019
+    },
+    {
+      "layer": "model.12.cv2.conv",
+      "n_params": 98304,
+      "mAP50_95": 0.5266,
+      "mAP_drop": 0.0013
+    },
+    {
+      "layer": "model.12.m.0.cv1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5274,
+      "mAP_drop": 0.0004
+    },
+    {
+      "layer": "model.12.m.0.cv2.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5273,
+      "mAP_drop": 0.0005
+    },
+    {
+      "layer": "model.15.cv1.conv",
+      "n_params": 49152,
+      "mAP50_95": 0.525,
+      "mAP_drop": 0.0028
+    },
+    {
+      "layer": "model.15.cv2.conv",
+      "n_params": 24576,
+      "mAP50_95": 0.528,
+      "mAP_drop": -0.0002
+    },
+    {
+      "layer": "model.15.m.0.cv1.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5268,
+      "mAP_drop": 0.001
+    },
+    {
+      "layer": "model.15.m.0.cv2.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5275,
+      "mAP_drop": 0.0003
+    },
+    {
+      "layer": "model.16.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5279,
+      "mAP_drop": -0.0
+    },
+    {
+      "layer": "model.18.cv1.conv",
+      "n_params": 98304,
+      "mAP50_95": 0.5282,
+      "mAP_drop": -0.0004
+    },
+    {
+      "layer": "model.18.cv2.conv",
+      "n_params": 98304,
+      "mAP50_95": 0.5266,
+      "mAP_drop": 0.0012
+    },
+    {
+      "layer": "model.18.m.0.cv1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5271,
+      "mAP_drop": 0.0007
+    },
+    {
+      "layer": "model.18.m.0.cv2.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5275,
+      "mAP_drop": 0.0003
+    },
+    {
+      "layer": "model.19.conv",
+      "n_params": 589824,
+      "mAP50_95": 0.5276,
+      "mAP_drop": 0.0002
+    },
+    {
+      "layer": "model.21.cv1.conv",
+      "n_params": 393216,
+      "mAP50_95": 0.528,
+      "mAP_drop": -0.0002
+    },
+    {
+      "layer": "model.21.cv2.conv",
+      "n_params": 393216,
+      "mAP50_95": 0.5276,
+      "mAP_drop": 0.0002
+    },
+    {
+      "layer": "model.21.m.0.cv1.conv",
+      "n_params": 589824,
+      "mAP50_95": 0.5282,
+      "mAP_drop": -0.0004
+    },
+    {
+      "layer": "model.21.m.0.cv2.conv",
+      "n_params": 589824,
+      "mAP50_95": 0.5281,
+      "mAP_drop": -0.0003
+    },
+    {
+      "layer": "model.22.cv2.0.0.conv",
+      "n_params": 73728,
+      "mAP50_95": 0.5269,
+      "mAP_drop": 0.0009
+    },
+    {
+      "layer": "model.22.cv2.0.1.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5268,
+      "mAP_drop": 0.001
+    },
+    {
+      "layer": "model.22.cv2.0.2",
+      "n_params": 4096,
+      "mAP50_95": 0.5278,
+      "mAP_drop": 0.0
+    },
+    {
+      "layer": "model.22.cv2.1.0.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5272,
+      "mAP_drop": 0.0007
+    },
+    {
+      "layer": "model.22.cv2.1.1.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5273,
+      "mAP_drop": 0.0006
+    },
+    {
+      "layer": "model.22.cv2.1.2",
+      "n_params": 4096,
+      "mAP50_95": 0.5273,
+      "mAP_drop": 0.0005
+    },
+    {
+      "layer": "model.22.cv2.2.0.conv",
+      "n_params": 294912,
+      "mAP50_95": 0.5275,
+      "mAP_drop": 0.0003
+    },
+    {
+      "layer": "model.22.cv2.2.1.conv",
+      "n_params": 36864,
+      "mAP50_95": 0.5281,
+      "mAP_drop": -0.0003
+    },
+    {
+      "layer": "model.22.cv2.2.2",
+      "n_params": 4096,
+      "mAP50_95": 0.5282,
+      "mAP_drop": -0.0004
+    },
+    {
+      "layer": "model.22.cv3.0.0.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5282,
+      "mAP_drop": -0.0004
+    },
+    {
+      "layer": "model.22.cv3.0.1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.529,
+      "mAP_drop": -0.0012
+    },
+    {
+      "layer": "model.22.cv3.0.2",
+      "n_params": 10240,
+      "mAP50_95": 0.5276,
+      "mAP_drop": 0.0002
+    },
+    {
+      "layer": "model.22.cv3.1.0.conv",
+      "n_params": 294912,
+      "mAP50_95": 0.5281,
+      "mAP_drop": -0.0003
+    },
+    {
+      "layer": "model.22.cv3.1.1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5257,
+      "mAP_drop": 0.0021
+    },
+    {
+      "layer": "model.22.cv3.1.2",
+      "n_params": 10240,
+      "mAP50_95": 0.5276,
+      "mAP_drop": 0.0003
+    },
+    {
+      "layer": "model.22.cv3.2.0.conv",
+      "n_params": 589824,
+      "mAP50_95": 0.5277,
+      "mAP_drop": 0.0001
+    },
+    {
+      "layer": "model.22.cv3.2.1.conv",
+      "n_params": 147456,
+      "mAP50_95": 0.5286,
+      "mAP_drop": -0.0008
+    },
+    {
+      "layer": "model.22.cv3.2.2",
+      "n_params": 10240,
+      "mAP50_95": 0.5286,
+      "mAP_drop": -0.0008
+    },
+    {
+      "layer": "model.22.dfl.conv",
+      "n_params": 16,
+      "mAP50_95": 0.5186,
+      "mAP_drop": 0.0092
+    }
+  ]
+}

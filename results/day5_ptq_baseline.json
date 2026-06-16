@@ -1,0 +1,17 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "model": "yolov8s",
+  "quantization": "per-tensor symmetric INT8 weight fake-quant (all conv)",
+  "n_conv_quantized": 64,
+  "dataset": "coco_val2017",
+  "n_images": 5000,
+  "img_sz": 640,
+  "device": "cuda",
+  "note": "FP32 compute, INT8-range weights. Accuracy measurement only.",
+  "metrics": {
+    "mAP50_95": 0.4399341751886982,
+    "mAP50": 0.6078776698241235,
+    "precision": 0.6820918459859993,
+    "recall": 0.5603804964399973
+  }
+}

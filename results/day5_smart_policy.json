@@ -1,0 +1,14 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "quantization": "INT8 all conv except model.22.dfl.conv (16 params)",
+  "n_quantized": 63,
+  "protected": [
+    "model.22.dfl.conv"
+  ],
+  "metrics": {
+    "mAP50_95": 0.44245443690774505,
+    "mAP50": 0.6081901415410672,
+    "precision": 0.6823416419409689,
+    "recall": 0.5602799461309669
+  }
+}

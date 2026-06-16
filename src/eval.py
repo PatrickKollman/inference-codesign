@@ -36,16 +36,43 @@ COCO_CLASSES = [
 ]
 
 
-def _make_coco_yaml(data_dir: Path) -> str:
+def _make_coco_yaml(data_dir: Path, val_split: str = "images/val2017") -> str:
     """Generate a minimal ultralytics-compatible COCO yaml string."""
     names_lines = "\n".join(f"  {i}: {n}" for i, n in enumerate(COCO_CLASSES))
     return (
         f"path: {data_dir.resolve()}\n"
         f"train: images/val2017\n"  # required by ultralytics validator; unused during val
-        f"val: images/val2017\n"
+        f"val: {val_split}\n"
         f"nc: 80\n"
         f"names:\n{names_lines}\n"
     )
+
+
+def make_subset_txt(data_dir: Path, n_images: int, seed: int = 42) -> Path:
+    """Write a deterministic subset of val2017 image paths to a .txt file.
+
+    ultralytics accepts a text file of relative image paths as the val split.
+    The file is written inside data_dir and is safe to call repeatedly
+    (same seed → same file, idempotent).
+
+    Returns the path to the .txt file (relative use: val: subset_{n}.txt).
+    """
+    import random
+
+    images = sorted((data_dir / "images" / "val2017").glob("*.jpg"))
+    if not images:
+        raise FileNotFoundError(f"No val2017 images found in {data_dir}/images/val2017/")
+
+    rng = random.Random(seed)
+    subset = sorted(rng.sample(images, min(n_images, len(images))))
+
+    txt_path = data_dir / f"subset_{n_images}.txt"
+    with open(txt_path, "w") as f:
+        for img in subset:
+            # Write paths relative to data_dir so ultralytics resolves correctly
+            f.write(f"./images/val2017/{img.name}\n")
+
+    return txt_path
 
 
 def run_coco_val(
@@ -55,6 +82,7 @@ def run_coco_val(
     img_sz: int = 640,
     batch: int = 16,
     workers: int = 4,
+    n_images: int | None = None,
 ) -> Any:
     """Run ultralytics YOLO.val() on COCO val2017 and return the raw result.
 
@@ -82,7 +110,14 @@ def run_coco_val(
             "Run scripts/download_coco_val.sh first."
         )
 
-    yaml_content = _make_coco_yaml(data_dir)
+    if n_images is not None:
+        subset_txt = make_subset_txt(data_dir, n_images)
+        # Path relative to data_dir root for the yaml val key
+        val_split = f"./{subset_txt.name}"
+        yaml_content = _make_coco_yaml(data_dir, val_split=val_split)
+    else:
+        yaml_content = _make_coco_yaml(data_dir)
+
     tmp_fd, tmp_yaml = tempfile.mkstemp(suffix=".yaml", prefix="coco_val_")
     try:
         with os.fdopen(tmp_fd, "w") as f:
