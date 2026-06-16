@@ -1,0 +1,27 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "model": "yolov8s",
+  "backend": "tensorrt_fp16",
+  "engine": "yolov8s_fp16.trt",
+  "precision": "fp16 (99.1% of nodes; 2 detection-head nodes kept FP32 by TRT)",
+  "input_shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "fp32_eager_mean_ms": 2.453,
+  "speedup_vs_fp32_eager": 3.614,
+  "timing": {
+    "mean_ms": 0.6787692782282829,
+    "p50_ms": 0.6778879761695862,
+    "p95_ms": 0.681984007358551,
+    "p99_ms": 0.7181516623497006,
+    "std_ms": 0.016285512190371026,
+    "min_ms": 0.6716480255126953,
+    "max_ms": 0.8869760036468506,
+    "n_reps": 200,
+    "n_warmup": 50,
+    "is_reportable": true
+  }
+}

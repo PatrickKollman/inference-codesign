@@ -1,0 +1,15 @@
+{
+  "env_timestamp_utc": "2026-06-16T04:39:51.071378+00:00",
+  "model": "yolov8s",
+  "backend": "tensorrt_int8",
+  "engine": "yolov8s_int8.engine",
+  "dataset": "coco_val2017",
+  "n_images": 5000,
+  "fp32_baseline_mAP50_95": 0.4442,
+  "metrics": {
+    "mAP50_95": 0.4297564845412123,
+    "mAP50": 0.5983646751278323,
+    "precision": 0.6787463045653916,
+    "recall": 0.5472957396450597
+  }
+}
