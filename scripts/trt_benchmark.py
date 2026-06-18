@@ -15,7 +15,7 @@ Note: TRT engine has 3 output tensors (detection head at 3 scales, split by TRT
 optimizer). All are allocated as buffers; only timing is recorded, not outputs.
 
 Usage:
-    python scripts/layer3_trt_benchmark.py [--engine results/yolov8s_fp16.trt]
+    python scripts/trt_benchmark.py [--engine results/yolov8s_fp16.trt]
 """
 from __future__ import annotations
 
@@ -29,13 +29,13 @@ import torch
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 RESULTS_DIR = ROOT / "results"
 
 INPUT_SHAPE = (1, 3, 640, 640)
 N_WARMUP = 50
 N_REPS = 200
-FP32_EAGER_MEAN_MS = 2.453  # from results/day2_baseline_fp32.json
+FP32_EAGER_MEAN_MS = 2.453  # from results/fp32_latency.json
 
 
 def load_engine(path: Path):
@@ -199,7 +199,7 @@ def main() -> None:
         "timing": {k: v for k, v in timing.items()},
     }
 
-    out = RESULTS_DIR / f"layer3_trt_{precision}_benchmark.json"
+    out = RESULTS_DIR / f"trt_{precision}_latency.json"
     RESULTS_DIR.mkdir(exist_ok=True)
     with open(out, "w") as f:
         json.dump(artifact, f, indent=2)

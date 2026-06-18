@@ -1,8 +1,8 @@
 # Day 4 — Profiling Notes: YOLOv8s FP32 on RTX 4090
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, ultralytics 8.4.68
-**Raw artifacts:** `results/day4_nsys_stats.txt`, `results/day4_ncu_top_conv.txt`
-**Provenance:** `results/day1_env.json` timestamp 2026-06-16T04:39:51.071378+00:00
+**Raw artifacts:** `results/profile_nsys_stats.txt`, `results/profile_ncu_blocked.txt`
+**Provenance:** `results/env.json` timestamp 2026-06-16T04:39:51.071378+00:00
 
 ---
 

@@ -1,8 +1,8 @@
 # Day 5 — Quantization Analysis: PTQ Pareto and the Sensitivity–Cost Interaction
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, ultralytics 8.4.68
-**Raw artifacts:** `results/day5_ptq_baseline.json`, `results/day5_sensitivity.json`, `results/day5_smart_policy.json`
-**Provenance:** `results/day1_env.json` timestamp 2026-06-16T04:39:51.071378+00:00
+**Raw artifacts:** `results/quant_pertensor_all.json`, `results/quant_sensitivity.json`, `results/quant_pertensor_smart.json`
+**Provenance:** `results/env.json` timestamp 2026-06-16T04:39:51.071378+00:00
 
 ---
 
@@ -18,7 +18,7 @@ Three measured configurations on full COCO val2017 (5000 images):
 
 Accuracy measurements use per-tensor symmetric INT8 weight fake-quantization (FP32
 compute, INT8-range weights). GPU INT8 latency requires TensorRT and is measured in
-Layer 3; the estimate above comes from the roofline analysis in `docs/profile_notes.md`
+Layer 3; the estimate above comes from the roofline analysis in `docs/profiling_analysis.md`
 (compute-bound conv kernels, 8× INT8:TF32 theoretical throughput ratio, ~2× realistic
 end-to-end improvement after accounting for dispatch overhead and memory-bound ops).
 
@@ -30,7 +30,7 @@ The textbook PTQ result is that early backbone layers and detection heads are se
 while deep backbone layers are safe. That is partially true here but misses the most
 important structure.
 
-**From profiling (docs/profile_notes.md):**
+**From profiling (docs/profiling_analysis.md):**
 The dominant kernel — `sm86_xmma_fprop_implicit_gemm_indexed_tf32f32`, 20 instances per
 forward pass, 19.3% of GPU kernel time — corresponds to the mid-to-large backbone and
 neck convolutions: `model.5.*`, `model.6.*`, `model.7.*`, `model.8.*`, `model.9.*`.
@@ -115,7 +115,7 @@ edge ASICs."** The smart INT8 policy buys back ~2× latency headroom at the cost
 
 ## What INT8 Does and Does Not Address
 
-From the profiling analysis (see `docs/profile_notes.md`):
+From the profiling analysis (see `docs/profiling_analysis.md`):
 
 **INT8 accelerates:**
 - Conv kernel execution (~58% of kernel time, compute-bound) → INT8 tensor cores

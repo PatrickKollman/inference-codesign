@@ -1,8 +1,8 @@
 # Layer 2 — Custom CUDA Kernel: Per-Channel INT8 Fake-Quantize
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, ultralytics 8.4.68
-**Raw artifacts:** `results/layer2_kernel_benchmark.json`, `results/layer2_perchannel_smart_eval.json`
-**Provenance:** `results/day1_env.json` timestamp 2026-06-16T04:39:51.071378+00:00
+**Raw artifacts:** `results/kernel_benchmark.json`, `results/kernel_perchannel_eval.json`
+**Provenance:** `results/env.json` timestamp 2026-06-16T04:39:51.071378+00:00
 **Kernel source:** `src/cuda/fake_quant_perchannel.cu`
 
 ---

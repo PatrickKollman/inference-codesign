@@ -16,7 +16,7 @@ the activation quantization noise is additive.
 Engine output: results/yolov8s_int8.trt
 
 Usage:
-    python scripts/layer3_trt_export.py [--data-dir data/coco]
+    python scripts/trt_int8_build.py [--data-dir data/coco]
 """
 from __future__ import annotations
 
@@ -76,7 +76,7 @@ def main() -> None:
         exported_path.rename(ENGINE_PATH)
 
     print(f"Engine: {ENGINE_PATH}  ({ENGINE_PATH.stat().st_size // (1024**2):.1f} MB)")
-    print("Next: python scripts/layer3_trt_benchmark.py")
+    print("Next: python scripts/trt_benchmark.py")
 
 
 if __name__ == "__main__":

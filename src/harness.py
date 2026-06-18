@@ -243,13 +243,13 @@ def save_timing_artifact(
     """Write a timing artifact to results/{artifact_name}.json.
 
     Every artifact links back to the env provenance timestamp from
-    day1_env.json so numbers can always be traced to a verified environment.
+    env.json so numbers can always be traced to a verified environment.
 
     Args:
         result:        TimingResult from benchmark().
-        artifact_name: Filename stem, e.g. "day2_baseline_fp32".
+        artifact_name: Filename stem, e.g. "fp32_latency".
         metadata:      Any additional fields (model, input shape, etc.).
-        env_json_path: Path to day1_env.json for provenance linking.
+        env_json_path: Path to env.json for provenance linking.
 
     Returns:
         Path to the written artifact.

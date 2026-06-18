@@ -6,8 +6,8 @@ If a number appears in docs, writeups, or README, the raw artifact that produced
 ## Rules
 
 1. **Raw artifacts are committed, not regenerated.** Re-runs get a versioned name (`_v2`, etc.); the original is never overwritten.
-2. **Naming:** `day{N}_{type}.{ext}` — e.g. `day1_env.json`, `day3_timing.json`, `day4_timeline.nsys-rep`, `day4_kernel.ncu-rep`.
-3. **Profiler binary artifacts** (`.nsys-rep`, `.ncu-rep`, `.sqlite`) are NOT committed — nsys/ncu capture the full process environment including secrets. Commit the text stats exports instead (e.g. `day4_nsys_stats.txt`). Regenerate binaries locally when needed by re-running the profiling command.
+2. **Naming:** `{experiment}_{type}.{ext}` — e.g. `env.json`, `fp32_latency.json`, `trt_fp16_accuracy.json`, `profile_nsys_stats.txt`.
+3. **Profiler binary artifacts** (`.nsys-rep`, `.ncu-rep`, `.sqlite`) are NOT committed — nsys/ncu capture the full process environment including secrets. Commit the text stats exports instead (e.g. `profile_nsys_stats.txt`). Regenerate binaries locally when needed by re-running the profiling command.
 4. **Never manually edit a raw artifact.** If a re-run is needed, rename the old artifact (`_v1`) before committing the new one.
 5. **Timing artifacts must include the full distribution:** mean, p50, p95, p99, std, min, max, plus batch size, input shape, device, and driver/CUDA/PyTorch versions. Reporting only mean is a violation.
-6. **env.md is the provenance anchor.** Every timing artifact references the `timestamp_utc` from `day1_env.json` so numbers trace to a verified environment, not an inherited assumption.
+6. **`env.json` is the provenance anchor.** Every timing artifact references the `timestamp_utc` from `env.json` so numbers trace to a verified environment, not an inherited assumption.

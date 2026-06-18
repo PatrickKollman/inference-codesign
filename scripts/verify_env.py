@@ -1,4 +1,4 @@
-"""Collect environment facts and write docs/env.md + results/day1_env.json.
+"""Collect environment facts and write results/env.json.
 
 Run this first on any new pod before any benchmark.
 Output files are the provenance anchor for all downstream reported numbers.
@@ -10,7 +10,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-DOCS = ROOT / "docs"
 RESULTS = ROOT / "results"
 
 
@@ -54,59 +53,15 @@ def main() -> None:
 
     # Write raw JSON artifact first
     RESULTS.mkdir(exist_ok=True)
-    json_path = RESULTS / "day1_env.json"
+    json_path = RESULTS / "env.json"
     with open(json_path, "w") as f:
         json.dump(env, f, indent=2)
 
-    # Write human-readable env.md
-    DOCS.mkdir(exist_ok=True)
     gpu_name = env.get("cuda_device_name", "N/A")
     cc = env.get("cuda_compute_capability", "N/A")
     vram = env.get("cuda_total_memory_gb", "N/A")
-    md = f"""# Environment
-
-Verified: {env['timestamp_utc']}
-Raw artifact: `results/day1_env.json`
-
-## GPU
-
-```
-{env['nvidia_smi']}
-```
-
-## CUDA Compiler
-
-```
-{env['nvcc_version']}
-```
-
-## Software Stack
-
-| Package | Version |
-|---------|---------|
-| Python | `{env['python_version'].split()[0]}` |
-| PyTorch | `{env.get('torch_version', 'N/A')}` |
-| CUDA (torch.version.cuda) | `{env.get('torch_cuda_version', 'N/A')}` |
-| cuDNN | `{env.get('cudnn_version', 'N/A')}` |
-| ultralytics | `{env.get('ultralytics_version', 'N/A')}` |
-
-## Device Properties
-
-| Property | Value |
-|----------|-------|
-| Device name | {gpu_name} |
-| Compute capability | {cc} |
-| VRAM | {vram} GB |
-
----
-*All reported numbers in this project trace to this environment via `day1_env.json` timestamp.*
-"""
-    md_path = DOCS / "env.md"
-    with open(md_path, "w") as f:
-        f.write(md)
 
     print(f"[verify_env] JSON artifact: {json_path}")
-    print(f"[verify_env] Markdown doc:  {md_path}")
     print(f"[verify_env] Device: {gpu_name}  CC: {cc}  VRAM: {vram} GB")
     print(f"[verify_env] PyTorch {env.get('torch_version')}  CUDA {env.get('torch_cuda_version')}  cuDNN {env.get('cudnn_version')}")
 

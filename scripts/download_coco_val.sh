@@ -37,26 +37,31 @@ if [ ! -f "${ANNOT}" ]; then
 fi
 
 echo "=== Converting COCO JSON annotations to YOLO label format ==="
-# convert_coco creates a new directory at save_dir (incrementing if it exists).
-# Use a dedicated temp dir and move labels into place to avoid path conflicts.
+# convert_coco in ultralytics 8.4.70+ iterates over ALL json files in labels_dir,
+# including captions_*.json which has no 'bbox' field and will crash.
+# Isolate instances_val2017.json in a temp directory before converting.
+TMP_INSTANCES="${DATA_DIR}_instances_tmp"
 TMP_CONVERT="${DATA_DIR}_convert_tmp"
-rm -rf "${TMP_CONVERT}"
+rm -rf "${TMP_INSTANCES}" "${TMP_CONVERT}"
+mkdir -p "${TMP_INSTANCES}"
+cp "${DATA_DIR}/annotations/instances_val2017.json" "${TMP_INSTANCES}/"
+
 python -c "
 from ultralytics.data.converter import convert_coco
 convert_coco(
-    labels_dir='${DATA_DIR}/annotations/',
+    labels_dir='${TMP_INSTANCES}/',
     save_dir='${TMP_CONVERT}',
     use_segments=False,
     cls91to80=True,
 )
 "
 mv "${TMP_CONVERT}/labels" "${DATA_DIR}/labels"
-rm -rf "${TMP_CONVERT}"
+rm -rf "${TMP_INSTANCES}" "${TMP_CONVERT}"
 
-N_LABELS=\$(ls "${DATA_DIR}/labels/val2017/" | wc -l | tr -d ' ')
-echo "=== \${N_LABELS} label files created (expected 5000) ==="
-if [ "\${N_LABELS}" -ne 5000 ]; then
-    echo "ERROR: Label count mismatch — conversion may have failed."
+N_LABELS=$(ls "${DATA_DIR}/labels/val2017/" | wc -l | tr -d ' ')
+echo "=== ${N_LABELS} label files created (expected ~4952; 48 val2017 images have no bbox annotations) ==="
+if [ "${N_LABELS}" -lt 4900 ]; then
+    echo "ERROR: Label count unexpectedly low — conversion may have failed."
     exit 1
 fi
 

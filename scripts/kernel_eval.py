@@ -6,7 +6,7 @@ Compares three configurations:
   - FP32 reference:                                 measured 0.4442
 
 Usage:
-    python scripts/layer2_kernel_eval.py [--data-dir data/coco]
+    python scripts/kernel_eval.py [--data-dir data/coco]
 """
 from __future__ import annotations
 
@@ -19,11 +19,11 @@ import torch
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 
-FP32_MAP       = 0.4442   # day3_mAP_fp32.json
-PERTENSOR_MAP  = 0.4399   # day5_ptq_baseline.json  (all 64 conv)
-SMART_PT_MAP   = 0.4425   # day5_smart_policy.json  (63/64, DFL excluded)
+FP32_MAP       = 0.4442   # fp32_accuracy.json
+PERTENSOR_MAP  = 0.4399   # quant_pertensor_all.json  (all 64 conv)
+SMART_PT_MAP   = 0.4425   # quant_pertensor_smart.json  (63/64, DFL excluded)
 
 DFL_LAYER = "model.22.dfl.conv"
 
@@ -91,7 +91,7 @@ def main():
 
     out = save_eval_artifact(
         metrics,
-        artifact_name="layer2_perchannel_smart_eval",
+        artifact_name="kernel_perchannel_eval",
         metadata={
             "model": "yolov8s",
             "method": "per_channel_int8_fake_quant",

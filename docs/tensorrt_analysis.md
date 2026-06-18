@@ -1,8 +1,8 @@
 # Layer 3 — TensorRT Analysis: Graph-Level Wins on YOLOv8s FP16 and INT8
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, TensorRT 11.0.0.114, ultralytics 8.4.68
-**Raw artifacts:** `results/layer3_trt_fp16_benchmark.json`, `results/layer3_trt_fp16_eval.json`, `results/layer3_trt_int8_benchmark.json`, `results/layer3_trt_int8_eval.json`
-**Provenance:** `results/day1_env.json` timestamp 2026-06-16T04:39:51.071378+00:00
+**Raw artifacts:** `results/trt_fp16_latency.json`, `results/trt_fp16_accuracy.json`, `results/trt_int8_latency.json`, `results/trt_int8_accuracy.json`
+**Provenance:** `results/env.json` timestamp 2026-06-16T04:39:51.071378+00:00
 
 ---
 
@@ -32,7 +32,7 @@ INT8 execution path with no precision fallbacks introducing timing variance.
 
 ## What Profiling Predicted
 
-From `docs/profile_notes.md`, three measured bottlenecks in FP32 eager mode:
+From `docs/profiling_analysis.md`, three measured bottlenecks in FP32 eager mode:
 
 | Overhead | Magnitude | Root cause |
 |----------|-----------|------------|
@@ -124,7 +124,7 @@ of the speedup because the ASIC execution schedule is compile-time-determined.
 ## INT8 Accuracy Gap: Fake-Quant vs Actual TRT
 
 The Day 5 analysis predicted −0.0043 mAP for full INT8. TRT INT8 measured −0.0144. The
-3.3× gap is real and was anticipated in `docs/quantization_notes.md`:
+3.3× gap is real and was anticipated in `docs/quantization_analysis.md`:
 
 | Quantization scope | mAP drop | Method |
 |-------------------|----------|--------|

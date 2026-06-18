@@ -1,6 +1,6 @@
 """Day 2: FP32 baseline latency + memory benchmark.
 
-Produces results/day2_baseline_fp32.json — the measurement anchor for all
+Produces results/fp32_latency.json — the measurement anchor for all
 downstream comparisons (INT8, AMP, TensorRT). Every later optimization result
 reports its improvement relative to this file's timing block.
 
@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 from src.harness import BenchmarkConfig, benchmark, measure_memory, save_timing_artifact
 from src.model import load_yolov8s, parameter_count
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 INPUT_SHAPE = (1, 3, 640, 640)
 DEVICE = "cuda"
 
@@ -76,7 +76,7 @@ def main() -> None:
     }
     out = save_timing_artifact(
         result,
-        artifact_name="day2_baseline_fp32",
+        artifact_name="fp32_latency",
         metadata=metadata,
         env_json_path=ENV_JSON,
     )

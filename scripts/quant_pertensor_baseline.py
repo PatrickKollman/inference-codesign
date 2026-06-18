@@ -11,11 +11,11 @@ Note on GPU INT8 latency
 Fake quantization runs FP32 compute on INT8-range weights — it measures
 accuracy impact, not latency impact. GPU INT8 tensor core speedup requires
 a compiler-path deployment (TensorRT) covered in Layer 3. The latency axis
-of the Day 5 Pareto is estimated from the roofline analysis in docs/profile_notes.md
+of the Quantization Pareto is estimated from the roofline analysis in docs/profiling_analysis.md
 until Layer 3 provides measured numbers.
 
 Usage:
-    python scripts/day5_ptq_baseline.py [--data-dir data/coco]
+    python scripts/quant_pertensor_baseline.py [--data-dir data/coco]
 """
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ sys.path.insert(0, str(ROOT))
 from src.eval import parse_metrics, run_coco_val, save_eval_artifact
 from src.quantize import apply_weight_fake_quant, iter_conv_modules, restore_weights
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 WEIGHTS = "yolov8s.pt"
 DEVICE = "cuda"
 IMG_SZ = 640
@@ -85,7 +85,7 @@ def main() -> None:
     }
     out = save_eval_artifact(
         metrics,
-        artifact_name="day5_ptq_baseline",
+        artifact_name="quant_pertensor_all",
         metadata=metadata,
         env_json_path=ENV_JSON,
     )

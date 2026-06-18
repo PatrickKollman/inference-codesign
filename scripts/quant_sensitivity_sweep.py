@@ -15,11 +15,11 @@ Strategy
 * Uses yolo.val() on the already-loaded model so in-memory weight modifications
   are picked up directly — NOT run_coco_val() which reloads from disk.
 
-Cross-reference with profiling results (results/day4_nsys_stats.txt) to find
+Cross-reference with profiling results (results/profile_nsys_stats.txt) to find
 the intersection of expensive layers (from nsys) and sensitive layers (from here).
 
 Usage:
-    python scripts/day5_sensitivity_sweep.py [--data-dir data/coco] [--n-images 100]
+    python scripts/quant_sensitivity_sweep.py [--data-dir data/coco] [--n-images 100]
 """
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ from src.quantize import (
     iter_conv_modules,
 )
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 WEIGHTS = "yolov8s.pt"
 DEVICE = "cuda"
 IMG_SZ = 640
@@ -121,7 +121,7 @@ def _run_sweep(yolo, model, data_dir: Path, yaml_path: str, n_images: int) -> No
     print(f"\nSweeping {len(conv_layers)} Conv2d layers ({n_images} images each)...")
     print(f"Estimated time: ~{len(conv_layers) * 15 // 60}–{len(conv_layers) * 30 // 60} min\n")
 
-    out_path = ROOT / "results" / "day5_sensitivity.json"
+    out_path = ROOT / "results" / "quant_sensitivity.json"
     results = []
 
     for i, (name, conv) in enumerate(conv_layers):

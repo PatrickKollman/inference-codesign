@@ -1,6 +1,10 @@
 # Core — torch is pre-installed on RunPod template; ultralytics pulls numpy + opencv
 ultralytics
+matplotlib
 
-# Testing — local unit test runs only
+# CUDA kernel JIT compilation (torch.utils.cpp_extension)
+ninja
+
+# Testing
 pytest
 numpy

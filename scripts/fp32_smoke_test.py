@@ -51,13 +51,13 @@ def main() -> None:
     print(f"[day1] Output (list of shapes): {output_info}")
 
     # Env reference for provenance
-    env_path = RESULTS / "day1_env.json"
+    env_path = RESULTS / "env.json"
     env_timestamp = None
     if env_path.exists():
         with open(env_path) as f:
             env_timestamp = json.load(f).get("timestamp_utc")
     else:
-        print("[day1] WARNING: day1_env.json not found — run verify_env.py first")
+        print("[day1] WARNING: env.json not found — run verify_env.py first")
 
     artifact = {
         "env_timestamp_utc": env_timestamp,
@@ -72,7 +72,7 @@ def main() -> None:
     }
 
     RESULTS.mkdir(exist_ok=True)
-    out_path = RESULTS / "day1_forward_pass.json"
+    out_path = RESULTS / "fp32_smoke_test.json"
     with open(out_path, "w") as f:
         json.dump(artifact, f, indent=2)
     print(f"[day1] Artifact written: {out_path}")

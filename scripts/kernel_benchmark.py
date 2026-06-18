@@ -4,7 +4,7 @@ Measures throughput (GB/s) and positions results on the roofline.
 Tested shapes match profiled YOLOv8s conv layers.
 
 Usage:
-    python scripts/layer2_kernel_benchmark.py
+    python scripts/kernel_benchmark.py
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ import torch
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-ENV_JSON    = ROOT / "results" / "day1_env.json"
+ENV_JSON    = ROOT / "results" / "env.json"
 RESULTS_DIR = ROOT / "results"
 
 # RTX 4090 specs (Ada Lovelace)
@@ -30,7 +30,7 @@ N_WARMUP = 50
 N_REPS   = 1000
 
 # Representative YOLOv8s conv shapes [C_out, C_in, kH, kW].
-# From profiling (docs/profile_notes.md): these are the expensive layers.
+# From profiling (docs/profiling_analysis.md): these are the expensive layers.
 SHAPES = [
     ((256, 256, 3, 3), "backbone_3x3_256"),
     ((128, 128, 3, 3), "neck_3x3_128"),
@@ -186,7 +186,7 @@ def main():
         "per_shape_results": results,
     }
 
-    out = RESULTS_DIR / "layer2_kernel_benchmark.json"
+    out = RESULTS_DIR / "kernel_benchmark.json"
     RESULTS_DIR.mkdir(exist_ok=True)
     with open(out, "w") as f:
         json.dump(artifact, f, indent=2)

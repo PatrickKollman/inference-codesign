@@ -5,7 +5,7 @@ val pipeline. This gives the measured mAP for the TRT INT8 Pareto point,
 replacing the Day 5 fake-quant approximation.
 
 Usage:
-    python scripts/layer3_trt_eval.py [--data-dir data/coco]
+    python scripts/trt_eval.py [--data-dir data/coco]
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 
 
 def main() -> None:
@@ -76,7 +76,7 @@ def main() -> None:
     precision = "fp16" if "fp16" in engine_path.name else "int8"
     out = save_eval_artifact(
         metrics,
-        artifact_name=f"layer3_trt_{precision}_eval",
+        artifact_name=f"trt_{precision}_accuracy",
         metadata={
             "model": "yolov8s",
             "backend": f"tensorrt_{precision}",

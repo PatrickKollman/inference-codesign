@@ -1,6 +1,6 @@
 """Day 3: FP32 baseline mAP evaluation on COCO val2017.
 
-Produces results/day3_mAP_fp32.json — the accuracy anchor for all downstream
+Produces results/fp32_accuracy.json — the accuracy anchor for all downstream
 quantization comparisons. Run after Day 1 and Day 2 artifacts are committed.
 
 Usage:
@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.eval import parse_metrics, run_coco_val, save_eval_artifact
 
-ENV_JSON = ROOT / "results" / "day1_env.json"
+ENV_JSON = ROOT / "results" / "env.json"
 WEIGHTS = "yolov8s.pt"
 DEVICE = "cuda"
 IMG_SZ = 640   # must match harness INPUT_SHAPE
@@ -66,7 +66,7 @@ def main() -> None:
     }
     out = save_eval_artifact(
         metrics,
-        artifact_name="day3_mAP_fp32",
+        artifact_name="fp32_accuracy",
         metadata=metadata,
         env_json_path=ENV_JSON,
     )
