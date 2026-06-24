@@ -66,4 +66,4 @@ if [ "${N_LABELS}" -lt 4900 ]; then
 fi
 
 echo "=== COCO val2017 ready at ${DATA_DIR} ==="
-echo "Run: python scripts/day3_eval_fp32.py --data-dir ${DATA_DIR}"
+echo "Run: python scripts/fp32_eval.py --data-dir ${DATA_DIR}"

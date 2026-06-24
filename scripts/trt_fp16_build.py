@@ -1,4 +1,4 @@
-"""Layer 3, Step 0: Export YOLOv8s to TensorRT FP16 engine.
+"""Export YOLOv8s to TensorRT FP16 engine.
 
 FP16 export does not require calibration data — TRT converts weights and
 activations to FP16 analytically (no dataset pass needed). Build time is

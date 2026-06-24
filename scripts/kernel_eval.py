@@ -1,7 +1,7 @@
-"""Layer 2: Evaluate per-channel fake-quant mAP vs per-tensor on COCO val2017.
+"""Evaluate per-channel fake-quant mAP vs per-tensor on COCO val2017.
 
 Compares three configurations:
-  - Per-tensor all (64/64 conv, Day 5 baseline):   measured 0.4399
+  - Per-tensor all (64/64 conv, baseline):          measured 0.4399
   - Per-channel smart (63/64, DFL excluded):        this script
   - FP32 reference:                                 measured 0.4442
 

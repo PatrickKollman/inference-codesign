@@ -135,8 +135,8 @@ class TestSaveEvalArtifact:
 
     def test_artifact_name_becomes_filename(self, tmp_path, monkeypatch):
         monkeypatch.setattr(eval_module, "RESULTS_DIR", tmp_path)
-        out = save_eval_artifact(_metrics(), "day3_mAP_fp32")
-        assert out.name == "day3_mAP_fp32.json"
+        out = save_eval_artifact(_metrics(), "fp32_accuracy")
+        assert out.name == "fp32_accuracy.json"
 
     def test_metrics_block_present_and_correct(self, tmp_path, monkeypatch):
         monkeypatch.setattr(eval_module, "RESULTS_DIR", tmp_path)
@@ -159,7 +159,7 @@ class TestSaveEvalArtifact:
 
     def test_env_provenance_linked_when_present(self, tmp_path, monkeypatch):
         monkeypatch.setattr(eval_module, "RESULTS_DIR", tmp_path)
-        env_json = tmp_path / "day1_env.json"
+        env_json = tmp_path / "env.json"
         env_json.write_text(json.dumps({"timestamp_utc": "2026-01-01T00:00:00+00:00"}))
         out = save_eval_artifact(_metrics(), "test_prov", env_json_path=env_json)
         with open(out) as f:

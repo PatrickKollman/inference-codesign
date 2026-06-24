@@ -1,4 +1,4 @@
-"""Layer 3, Step 1: Export YOLOv8s to TensorRT INT8 engine.
+"""Export YOLOv8s to TensorRT INT8 engine.
 
 Uses ultralytics' built-in TRT export, which handles:
   - ONNX graph export and simplification
@@ -8,9 +8,9 @@ Uses ultralytics' built-in TRT export, which handles:
 INT8 calibration in TRT
 -----------------------
 TRT INT8 requires per-tensor activation scales (not just weight scales like
-our Day 5 fake-quant). The calibrator feeds real image batches through the
+our fake-quant sweep). The calibrator feeds real image batches through the
 network, records min/max activations at each tensor, and derives scales.
-This is why the Day 5 fake-quant accuracy numbers differ slightly from TRT INT8 —
+This is why the fake-quant accuracy numbers differ slightly from TRT INT8 —
 the activation quantization noise is additive.
 
 Engine output: results/yolov8s_int8.trt

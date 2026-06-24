@@ -1,4 +1,4 @@
-"""Layer 2: Benchmark per-channel INT8 fake-quantize kernel vs PyTorch baseline.
+"""Benchmark per-channel INT8 fake-quantize kernel vs PyTorch baseline.
 
 Measures throughput (GB/s) and positions results on the roofline.
 Tested shapes match profiled YOLOv8s conv layers.

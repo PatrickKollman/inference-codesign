@@ -1,4 +1,4 @@
-"""Layer 3, Step 2: Benchmark TRT FP16 engine latency using CUDA event timing.
+"""Benchmark TRT engine latency using CUDA event timing.
 
 Loads the serialized TRT engine and runs inference directly via the TRT 11.x
 Python API — no ultralytics wrapper in the timing path. Uses torch tensors for

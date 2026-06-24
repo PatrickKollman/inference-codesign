@@ -1,11 +1,11 @@
-"""Day 4: Nsight Systems timeline capture for YOLOv8s FP32 forward pass.
+"""Nsight Systems timeline capture for YOLOv8s FP32 forward pass.
 
 Warmup runs BEFORE the cudaProfilerApi capture range so the nsys timeline
 contains only steady-state inference — no JIT, no cuDNN heuristic selection.
 Run via:
     nsys profile --capture-range=cudaProfilerApi --trace=cuda --stats=true \
-        --output=results/day4_timeline --force-overwrite=true \
-        python scripts/day4_profile_nsys.py
+        --output=results/profile_nsys_timeline --force-overwrite=true \
+        python scripts/profile_nsys.py
 """
 from __future__ import annotations
 

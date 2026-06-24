@@ -1,8 +1,8 @@
-"""Layer 3, Step 3: Evaluate TRT INT8 engine mAP on COCO val2017.
+"""Evaluate TRT engine mAP on COCO val2017.
 
 Loads the TRT engine via ultralytics' YOLO wrapper and runs the standard
 val pipeline. This gives the measured mAP for the TRT INT8 Pareto point,
-replacing the Day 5 fake-quant approximation.
+replacing the fake-quant approximation.
 
 Usage:
     python scripts/trt_eval.py [--data-dir data/coco]

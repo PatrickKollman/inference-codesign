@@ -297,7 +297,7 @@ quantization achieves higher accuracy than per-tensor on YOLOv8s (0.4434 vs 0.43
 the DFL layer), and (2) it demonstrates a correct fused reduction CUDA kernel with L2-cache-bound
 roofline behavior. It is not a replacement for TRT's calibration.
 
-**FP32 baseline (0.4442 mAP50-95) is 0.48 below Ultralytics' published 44.9.**
+**FP32 baseline is 44.42 mAP50-95 vs. Ultralytics' published 44.9 — a gap of 0.48 percentage points.**
 Measured with ultralytics 8.4.68, `val(imgsz=640, batch=16, device=0)` with default conf/iou/rect,
 5000 COCO val2017 images on RTX 4090 (see [`results/fp32_accuracy.json`](results/fp32_accuracy.json)).
 **Isolation check (ultralytics 8.4.70):** Running `YOLO("yolov8s.pt").val(data=coco.yaml)` with

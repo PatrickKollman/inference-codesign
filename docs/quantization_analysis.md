@@ -1,4 +1,4 @@
-# Day 5 — Quantization Analysis: PTQ Pareto and the Sensitivity–Cost Interaction
+# Quantization Sensitivity Analysis: PTQ Pareto and the Sensitivity–Cost Interaction
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, ultralytics 8.4.68
 **Raw artifacts:** `results/quant_pertensor_all.json`, `results/quant_sensitivity.json`, `results/quant_pertensor_smart.json`
@@ -13,12 +13,11 @@ Three measured configurations on full COCO val2017 (5000 images):
 | Config | mAP50-95 | mAP drop | Params in FP32 | GPU INT8 latency |
 |--------|----------|----------|----------------|-----------------|
 | FP32 eager baseline | 0.4442 | — | 11,166,560 (100%) | 2.453 ms mean, p99 2.668 ms |
-| INT8 smart (63/64 conv) | **0.4425** | **−0.0017** | **16 (DFL only)** | est. 1.2–1.5 ms (TRT, Layer 3) |
-| INT8 all (64/64 conv) | 0.4399 | −0.0043 | 0 | est. 1.2–1.5 ms (TRT, Layer 3) |
+| INT8 smart (63/64 conv) | **0.4425** | **−0.0017** | **16 (DFL only)** | est. 1.2–1.5 ms (TRT) |
+| INT8 all (64/64 conv) | 0.4399 | −0.0043 | 0 | est. 1.2–1.5 ms (TRT) |
 
 Accuracy measurements use per-tensor symmetric INT8 weight fake-quantization (FP32
-compute, INT8-range weights). GPU INT8 latency requires TensorRT and is measured in
-Layer 3; the estimate above comes from the roofline analysis in `docs/profiling_analysis.md`
+compute, INT8-range weights). GPU INT8 latency requires TensorRT and is measured in the TensorRT analysis; the estimate above comes from the roofline analysis in `docs/profiling_analysis.md`
 (compute-bound conv kernels, 8× INT8:TF32 theoretical throughput ratio, ~2× realistic
 end-to-end improvement after accounting for dispatch overhead and memory-bound ops).
 
@@ -130,7 +129,7 @@ From the profiling analysis (see `docs/profiling_analysis.md`):
 
 After INT8, the bottleneck shifts: dispatch overhead becomes the dominant term.
 The next optimization opportunity is graph-level (TensorRT: op fusion, CUDA Graphs),
-not precision-level. This is the motivation for Layer 3.
+not precision-level. This is the motivation for TensorRT deployment.
 
 ---
 

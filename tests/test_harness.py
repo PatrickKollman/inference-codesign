@@ -187,7 +187,7 @@ class TestSaveTimingArtifact:
 
     def test_env_provenance_linked_when_present(self, tmp_path, monkeypatch):
         monkeypatch.setattr(harness_module, "RESULTS_DIR", tmp_path)
-        env_json = tmp_path / "day1_env.json"
+        env_json = tmp_path / "env.json"
         env_json.write_text(json.dumps({"timestamp_utc": "2026-01-01T00:00:00+00:00"}))
 
         out = save_timing_artifact(self._make_result(), "test_prov", env_json_path=env_json)

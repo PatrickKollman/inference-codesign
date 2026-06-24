@@ -4,7 +4,7 @@ Design note on scope
 --------------------
 torch.ao.quantization static PTQ targets CPU execution and does not use INT8
 tensor cores on CUDA. GPU INT8 latency (the actual speedup story) requires
-TensorRT or torch.compile, covered in Layer 3. Day 5 uses these utilities for:
+TensorRT or torch.compile. These utilities support:
 
   1. Per-layer weight sensitivity: fake-quantize one Conv at a time, measure
      mAP drop. Identifies which layers are precision-sensitive.
@@ -12,7 +12,7 @@ TensorRT or torch.compile, covered in Layer 3. Day 5 uses these utilities for:
      range, FP32 compute. Measures accuracy loss from weight quantization.
 
 The two outputs (sensitivity ranking + accuracy baseline) feed the Pareto
-analysis. The INT8 latency axis of the Pareto is filled in by Layer 3.
+analysis. The INT8 latency axis of the Pareto is measured via TRT deployment.
 """
 from __future__ import annotations
 

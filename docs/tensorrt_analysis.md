@@ -1,4 +1,4 @@
-# Layer 3 — TensorRT Analysis: Graph-Level Wins on YOLOv8s FP16 and INT8
+# TensorRT Analysis: Graph-Level Wins on YOLOv8s FP16 and INT8
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, TensorRT 11.0.0.114, ultralytics 8.4.68
 **Raw artifacts:** `results/trt_fp16_latency.json`, `results/trt_fp16_accuracy.json`, `results/trt_int8_latency.json`, `results/trt_int8_accuracy.json`
@@ -123,7 +123,7 @@ of the speedup because the ASIC execution schedule is compile-time-determined.
 
 ## INT8 Accuracy Gap: Fake-Quant vs Actual TRT
 
-The Day 5 analysis predicted −0.0043 mAP for full INT8. TRT INT8 measured −0.0144. The
+The sensitivity sweep predicted −0.0043 mAP for full INT8. TRT INT8 measured −0.0144. The
 3.3× gap is real and was anticipated in `docs/quantization_analysis.md`:
 
 | Quantization scope | mAP drop | Method |
@@ -132,7 +132,7 @@ The Day 5 analysis predicted −0.0043 mAP for full INT8. TRT INT8 measured −0
 | Fake-quant all (weights only) | −0.0043 | FP32 compute, INT8-range weights |
 | TRT INT8 (weights + activations) | **−0.0144** | Real INT8 kernels, calibrated activations |
 
-**The gap is activation quantization.** The Day 5 fake-quant quantized weights only — a
+**The gap is activation quantization.** The fake-quant sweep quantized weights only — a
 conservative proxy that measures accuracy loss from weight discretization alone. TRT INT8
 also quantizes activations at every inter-layer boundary, adding a second noise source that
 compounds with the weight noise.
@@ -159,7 +159,7 @@ methods was explicitly documented before this measurement was run.
 
 ## ASIC Transfer Reasoning
 
-The Layer 3 result quantifies what fixed-function silicon gains for free relative to eager
+This result quantifies what fixed-function silicon gains for free relative to eager
 GPU execution:
 
 | Bottleneck | GPU eager | TRT compiled | Fixed-function ASIC |

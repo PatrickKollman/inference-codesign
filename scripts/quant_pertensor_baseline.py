@@ -1,4 +1,4 @@
-"""Day 5: full-model INT8 weight fake-quantization accuracy baseline.
+"""Full-model INT8 weight fake-quantization accuracy baseline.
 
 Applies fake INT8 quantization to ALL Conv2d weights simultaneously,
 evaluates mAP on full COCO val2017, and records the result.
@@ -10,9 +10,9 @@ Note on GPU INT8 latency
 ------------------------
 Fake quantization runs FP32 compute on INT8-range weights — it measures
 accuracy impact, not latency impact. GPU INT8 tensor core speedup requires
-a compiler-path deployment (TensorRT) covered in Layer 3. The latency axis
-of the Quantization Pareto is estimated from the roofline analysis in docs/profiling_analysis.md
-until Layer 3 provides measured numbers.
+a compiler-path deployment (TensorRT). The latency axis of the Quantization
+Pareto is estimated from the roofline analysis in docs/profiling_analysis.md
+until TRT provides measured numbers.
 
 Usage:
     python scripts/quant_pertensor_baseline.py [--data-dir data/coco]

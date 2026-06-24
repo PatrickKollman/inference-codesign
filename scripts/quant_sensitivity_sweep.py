@@ -1,4 +1,4 @@
-"""Day 5: per-layer INT8 weight sensitivity sweep.
+"""Per-layer INT8 weight sensitivity sweep.
 
 For each Conv2d in YOLOv8s, temporarily fake-quantizes its weights to INT8
 precision (per-tensor symmetric), evaluates mAP on a small COCO subset, and

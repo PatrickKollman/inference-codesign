@@ -1,4 +1,4 @@
-# Day 4 — Profiling Notes: YOLOv8s FP32 on RTX 4090
+# Overhead Profiling: YOLOv8s FP32 on RTX 4090
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, ultralytics 8.4.68
 **Raw artifacts:** `results/profile_nsys_stats.txt`, `results/profile_ncu_blocked.txt`
@@ -68,7 +68,7 @@ has already completed the previous kernel and is waiting.
 *relative* gap larger, not smaller. The fix is graph-level: CUDA Graphs (pre-records the
 kernel sequence, eliminating per-iteration dispatch) or a compiler stack that fuses ops
 and reduces launch count. TensorRT does both — this is the primary mechanism behind
-Layer 3's expected wins.
+its speedup.
 
 On a fixed-function edge ASIC, this gap disappears entirely: the execution schedule is
 hardware-determined at compile time, with no CPU in the loop between operations.
@@ -150,7 +150,7 @@ expect 1.5–2.5× end-to-end latency reduction from INT8.
 
 ---
 
-## INT8 Policy Preview (Day 5)
+## INT8 Policy Preview
 
 From the profiling data, three layers of the quantization decision interact:
 
@@ -167,7 +167,7 @@ From the profiling data, three layers of the quantization decision interact:
 **The non-obvious interaction:** After INT8 quantization of convolutions, their kernel
 time drops by ~2×. The dispatch overhead (0.928 ms, currently 38% of total) becomes
 a larger fraction of total latency — potentially 50%+. This shifts the bottleneck from
-"conv execution" to "dispatch overhead," making the TensorRT compiler path (Layer 3)
+"conv execution" to "dispatch overhead," making the TensorRT compiler path
 more valuable after INT8 than before. The optimization order matters.
 
 ---
@@ -185,7 +185,7 @@ The three largest overhead categories in this profile map directly to ASIC desig
 If we could eliminate all three on this GPU (via TensorRT + CUDA Graphs + NHWC-native
 layout), the **theoretical kernel-only latency is 1.525 ms** — 38% faster than the
 2.453 ms eager baseline with no algorithmic change. This is the quantitative case for
-the compiler path (Layer 3) independent of precision.
+the compiler path independent of precision.
 
 On a custom ASIC targeting 10 ms perception budget at 30 Hz:
 - The 2.453 ms baseline occupies 24.5% of budget at peak GPU compute

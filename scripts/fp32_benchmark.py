@@ -1,11 +1,11 @@
-"""Day 2: FP32 baseline latency + memory benchmark.
+"""FP32 baseline latency + memory benchmark.
 
 Produces results/fp32_latency.json — the measurement anchor for all
 downstream comparisons (INT8, AMP, TensorRT). Every later optimization result
 reports its improvement relative to this file's timing block.
 
-Run on RunPod after Day 1 artifacts are committed:
-    python scripts/day2_benchmark_fp32.py
+Run on RunPod after verify_env.py:
+    python scripts/fp32_benchmark.py
 """
 from __future__ import annotations
 

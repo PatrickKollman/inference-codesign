@@ -1,11 +1,11 @@
-"""Day 3: FP32 baseline mAP evaluation on COCO val2017.
+"""FP32 baseline mAP evaluation on COCO val2017.
 
 Produces results/fp32_accuracy.json — the accuracy anchor for all downstream
-quantization comparisons. Run after Day 1 and Day 2 artifacts are committed.
+quantization comparisons. Run after verify_env.py and fp32_benchmark.py.
 
 Usage:
-    python scripts/day3_eval_fp32.py --data-dir data/coco
-    python scripts/day3_eval_fp32.py --data-dir /absolute/path/to/coco
+    python scripts/fp32_eval.py --data-dir data/coco
+    python scripts/fp32_eval.py --data-dir /absolute/path/to/coco
 """
 from __future__ import annotations
 

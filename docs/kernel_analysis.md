@@ -1,4 +1,4 @@
-# Layer 2 — Custom CUDA Kernel: Per-Channel INT8 Fake-Quantize
+# Custom CUDA Kernel: Per-Channel INT8 Fake-Quantize
 
 **Environment:** RTX 4090 (Ada, CC 8.9), CUDA 12.8, PyTorch 2.8.0+cu128, ultralytics 8.4.68
 **Raw artifacts:** `results/kernel_benchmark.json`, `results/kernel_perchannel_eval.json`
@@ -9,7 +9,7 @@
 
 ## Motivation
 
-Day 5 established that per-tensor symmetric INT8 weight quantization loses 0.0043 mAP on
+The sensitivity sweep established that per-tensor symmetric INT8 weight quantization loses 0.0043 mAP on
 YOLOv8s. The DFL conv (16 parameters, one output channel) accounts for 60% of that loss
 because all 16 weights share a single scale — the per-tensor max — collapsing the learned
 cumulative distribution function for bounding box coordinate offsets.
@@ -171,7 +171,7 @@ to specify the hardware quantizer correctly.
 
 ---
 
-## Layer 2 Summary
+## Summary
 
 The complete quantization Pareto for YOLOv8s on COCO val2017:
 
@@ -190,4 +190,4 @@ higher accuracy *and* lower QAT cost than any PyTorch-based alternative measured
 The −0.0008 residual gap vs FP32 reflects weight-only quantization; activation quantization
 (as applied by TensorRT INT8) adds further degradation (TRT INT8 measured −0.0144), which
 is expected and consistent with the fake-quant vs real-quant distinction established in
-Layer 3.
+the TensorRT analysis.

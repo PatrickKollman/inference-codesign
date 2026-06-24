@@ -1,4 +1,4 @@
-"""Day 1: verify YOLOv8s forward pass and commit output-shape artifact.
+"""Verify YOLOv8s forward pass and commit output-shape artifact.
 
 This is a smoke test only — not a benchmark. It confirms:
   - The model graph is accessible via plain nn.Module forward()
@@ -30,14 +30,14 @@ def tensor_shape(x) -> list:
 
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"[day1] Device: {device}")
+    print(f"[smoke_test] Device: {device}")
 
     model = load_yolov8s(device=device)
     n_params = parameter_count(model)
-    print(f"[day1] Parameters: {n_params:,}")
+    print(f"[smoke_test] Parameters: {n_params:,}")
 
     x = torch.zeros(INPUT_SHAPE, device=device, dtype=torch.float32)
-    print(f"[day1] Input shape: {list(INPUT_SHAPE)}  dtype: float32")
+    print(f"[smoke_test] Input shape: {list(INPUT_SHAPE)}  dtype: float32")
 
     with torch.no_grad():
         out = model(x)
@@ -48,7 +48,7 @@ def main() -> None:
     else:
         output_info = [tensor_shape(out)]
 
-    print(f"[day1] Output (list of shapes): {output_info}")
+    print(f"[smoke_test] Output (list of shapes): {output_info}")
 
     # Env reference for provenance
     env_path = RESULTS / "env.json"
@@ -57,7 +57,7 @@ def main() -> None:
         with open(env_path) as f:
             env_timestamp = json.load(f).get("timestamp_utc")
     else:
-        print("[day1] WARNING: env.json not found — run verify_env.py first")
+        print("[smoke_test] WARNING: env.json not found — run verify_env.py first")
 
     artifact = {
         "env_timestamp_utc": env_timestamp,
@@ -75,7 +75,7 @@ def main() -> None:
     out_path = RESULTS / "fp32_smoke_test.json"
     with open(out_path, "w") as f:
         json.dump(artifact, f, indent=2)
-    print(f"[day1] Artifact written: {out_path}")
+    print(f"[smoke_test] Artifact written: {out_path}")
 
 
 if __name__ == "__main__":
